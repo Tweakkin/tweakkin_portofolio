@@ -56,6 +56,7 @@
           <li><a href="#skills" class="navbar__link">Skills</a></li>
           <li><a href="#projects" class="navbar__link">Projects</a></li>
           <li><a href="#experience" class="navbar__link">Experience</a></li>
+          <li><a href="#blog" class="navbar__link">Blog</a></li>
           <li><a href="#contact" class="navbar__link">Contact</a></li>
         </ul>
       </nav>
@@ -98,6 +99,7 @@
         <li><a href="#skills" class="mobile-menu__link">Skills</a></li>
         <li><a href="#projects" class="mobile-menu__link">Projects</a></li>
         <li><a href="#experience" class="mobile-menu__link">Experience</a></li>
+        <li><a href="#blog" class="mobile-menu__link">Blog</a></li>
         <li><a href="#contact" class="mobile-menu__link">Contact</a></li>
       </ul>
     </nav>
@@ -123,6 +125,11 @@
           <div class="hero__cta animate-on-scroll fade-in" style="--delay: 0.4s">
             <a href="#projects" class="btn btn--primary">View My Work</a>
             <a href="#contact" class="btn btn--outline">Get In Touch</a>
+            <a href="assets/resume.pdf" download class="btn btn--download" id="resume-btn" aria-label="Download Resume">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Download Resume
+              <span class="download-badge" id="download-badge" aria-label="Download count">0</span>
+            </a>
           </div>
           <div class="hero__socials animate-on-scroll fade-in" style="--delay: 0.5s">
             <a href="https://github.com/Tweakkin" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="social-link">
@@ -154,6 +161,17 @@
       </div>
     </section>
 
+    <!-- ====================== CURRENTLY WORKING ON ====================== -->
+    <section class="currently-working" id="currently-working">
+      <div class="container">
+        <div class="currently-working__pill animate-on-scroll fade-in" id="current-activity">
+          <span class="currently-working__icon">🔨</span>
+          <span class="currently-working__text">Loading latest activity...</span>
+          <span class="currently-working__time"></span>
+        </div>
+      </div>
+    </section>
+
     <!-- ====================== ABOUT SECTION ====================== -->
     <section class="section about" id="about">
       <div class="container">
@@ -181,15 +199,18 @@
           </div>
           <div class="about__stats animate-on-scroll slide-up" style="--delay: 0.15s">
             <div class="stat-card">
-              <span class="stat-card__number" data-count="14">0</span>
+              <span class="stat-card__live-badge" title="Live from GitHub"><span class="live-dot"></span> Live</span>
+              <span class="stat-card__number" id="stat-repos" data-count="14">0</span>
               <span class="stat-card__label">GitHub Repos</span>
             </div>
             <div class="stat-card">
-              <span class="stat-card__number" data-count="338">0</span>
+              <span class="stat-card__live-badge" title="Live from GitHub"><span class="live-dot"></span> Live</span>
+              <span class="stat-card__number" id="stat-contributions" data-count="338">0</span>
               <span class="stat-card__label">Contributions</span>
             </div>
             <div class="stat-card">
-              <span class="stat-card__number" data-count="5">0</span>
+              <span class="stat-card__live-badge" title="Live from GitHub"><span class="live-dot"></span> Live</span>
+              <span class="stat-card__number" id="stat-languages" data-count="5">0</span>
               <span class="stat-card__label">Languages</span>
             </div>
             <div class="stat-card">
@@ -386,32 +407,63 @@
       </div>
     </section>
 
+    <!-- ====================== BLOG SECTION ====================== -->
+    <section class="section blog" id="blog">
+      <div class="container">
+        <h2 class="section__title animate-on-scroll fade-in">
+          <span class="section__number">05.</span> Blog
+        </h2>
+        <p class="section__subtitle animate-on-scroll fade-in">
+          Thoughts, tutorials, and stories from my programming journey.
+        </p>
+        <div class="blog__grid" id="blog-grid">
+          <!-- Loading skeleton -->
+          <div class="blog-skeleton" aria-hidden="true">
+            <div class="skeleton-line skeleton-line--title"></div>
+            <div class="skeleton-line skeleton-line--text"></div>
+            <div class="skeleton-line skeleton-line--text skeleton-line--short"></div>
+            <div class="skeleton-line skeleton-line--tags"></div>
+          </div>
+          <div class="blog-skeleton" aria-hidden="true">
+            <div class="skeleton-line skeleton-line--title"></div>
+            <div class="skeleton-line skeleton-line--text"></div>
+            <div class="skeleton-line skeleton-line--text skeleton-line--short"></div>
+            <div class="skeleton-line skeleton-line--tags"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ====================== CONTACT SECTION ====================== -->
     <section class="section contact" id="contact">
       <div class="container">
         <h2 class="section__title animate-on-scroll fade-in">
-          <span class="section__number">05.</span> Get In Touch
+          <span class="section__number">06.</span> Get In Touch
         </h2>
         <p class="section__subtitle animate-on-scroll fade-in">
           Have a project idea, question, or just want to say hello? I'd love to hear from you.
         </p>
         <div class="contact__grid">
-          <form class="contact__form animate-on-scroll slide-up" action="https://formspree.io/f/yourformid" method="POST" id="contact-form">
+          <form class="contact__form animate-on-scroll slide-up" action="https://formspree.io/f/yourformid" method="POST" id="contact-form" novalidate>
             <div class="form-group">
               <label for="name" class="form-label">Name</label>
               <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required />
+              <span class="form-error" id="name-error" role="alert"></span>
             </div>
             <div class="form-group">
               <label for="email" class="form-label">Email</label>
               <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required />
+              <span class="form-error" id="email-error" role="alert"></span>
             </div>
             <div class="form-group">
               <label for="message" class="form-label">Message</label>
               <textarea id="message" name="message" class="form-input form-textarea" placeholder="Your message..." rows="5" required></textarea>
+              <span class="form-error" id="message-error" role="alert"></span>
             </div>
-            <button type="submit" class="btn btn--primary btn--full">
-              Send Message
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            <button type="submit" class="btn btn--primary btn--full" id="submit-btn">
+              <span class="btn__text">Send Message</span>
+              <span class="btn__spinner" aria-hidden="true"></span>
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
             </button>
           </form>
           <div class="contact__info animate-on-scroll slide-up" style="--delay: 0.15s">
@@ -450,11 +502,29 @@
   </main>
 
   <!-- ======================== FOOTER ======================== -->
+  <!-- ======================== TOAST CONTAINER ======================== -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ======================== BLOG MODAL ======================== -->
+  <div class="blog-modal" id="blog-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="blog-modal__overlay" tabindex="-1"></div>
+    <div class="blog-modal__content">
+      <button class="blog-modal__close" id="blog-modal-close" aria-label="Close blog post">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <article class="blog-modal__body" id="blog-modal-body">
+        <!-- Markdown content rendered here -->
+      </article>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="container footer__inner">
       <p class="footer__text">
+        <span class="footer__alive-dot" title="Site is live"></span>
         Designed & Built by <strong>Yahya Boukhmira</strong>
       </p>
+      <p class="footer__updated" id="footer-updated">Last updated: loading...</p>
       <div class="footer__socials">
         <a href="https://github.com/Tweakkin" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
@@ -468,6 +538,7 @@
   </footer>
 
   <!-- ======================== SCRIPTS ======================== -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

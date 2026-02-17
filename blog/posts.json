@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "my-journey-at-1337",
+    "title": "My Journey at 1337 Coding School",
+    "date": "2025-12-15",
+    "excerpt": "From day one at 1337 (42 Network) to mastering C systems programming — here's what peer-to-peer learning really looks like and how it shaped me as a developer.",
+    "tags": ["1337", "42 Network", "Peer Learning", "C Programming"]
+  },
+  {
+    "slug": "why-i-love-c-programming",
+    "title": "Why I Love C Programming",
+    "date": "2026-01-20",
+    "excerpt": "C is often called outdated, but for me it's the ultimate teacher. Here's why writing code close to the metal makes you a better programmer in any language.",
+    "tags": ["C", "Systems Programming", "Memory Management", "Low-Level"]
+  }
+]

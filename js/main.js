@@ -686,7 +686,7 @@
 			}).join('');
 
 			return '<button class="blog-card animate-on-scroll slide-up" style="--delay: ' + (index * 0.1) + 's" ' +
-				'data-slug="' + escapeHTML(post.slug) + '" aria-label="Read ' + escapeHTML(post.title) + '">' +
+				'data-slug="' + escapeHTML(post.slug) + '" ' + (post.externalUrl ? 'data-url="' + escapeHTML(post.externalUrl) + '" ' : '') + 'aria-label="Read ' + escapeHTML(post.title) + '">' +
 				'<div class="blog-card__header">' +
 				'<span class="blog-card__date">' +
 				'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>' +
@@ -708,8 +708,13 @@
 		// Attach click handlers
 		$$('.blog-card').forEach(function (card) {
 			card.addEventListener('click', function () {
-				var slug = this.getAttribute('data-slug');
-				openBlogPost(slug);
+				var url = this.getAttribute('data-url');
+				if (url) {
+					window.open(url, '_blank');
+				} else {
+					var slug = this.getAttribute('data-slug');
+					openBlogPost(slug);
+				}
 			});
 		});
 	}

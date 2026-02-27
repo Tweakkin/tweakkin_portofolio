@@ -652,7 +652,7 @@
   function mailtoFallback(name, email, message) {
     var subject = encodeURIComponent('Portfolio Contact from ' + name);
     var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
-    window.location.href = 'mailto:contact@yahyaboukhira.com?subject=' + subject + '&body=' + body;
+    window.location.href = 'mailto:yahyaboukhmira7@gmail.com?subject=' + subject + '&body=' + body;
   }
 
 

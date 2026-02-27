@@ -319,14 +319,13 @@
 				if (statLangs) statLangs.setAttribute('data-count', langCount);
 			}
 
-			// Contributions count
+			// Contributions count (all years)
 			if (results[2].status === 'fulfilled') {
 				var contribData = results[2].value;
 				var totalContribs = 0;
 				if (contribData.total) {
-					// Get current year contributions
-					var currentYear = new Date().getFullYear().toString();
-					totalContribs = contribData.total[currentYear] || contribData.total[Object.keys(contribData.total).pop()] || 338;
+					// Sum all years
+					totalContribs = Object.values(contribData.total).reduce(function (sum, val) { return sum + val; }, 0);
 				}
 				var statContribs = $('#stat-contributions');
 				if (statContribs) statContribs.setAttribute('data-count', totalContribs);

@@ -46,6 +46,13 @@
 </head>
 
 <body>
+	<!-- ======================== AMBIENT GLOW BACKGROUND ======================== -->
+	<div class="ambient-glow" aria-hidden="true" id="ambient-glow">
+		<div class="glow-orb orb-1"></div>
+		<div class="glow-orb orb-2"></div>
+		<div class="glow-orb orb-3"></div>
+	</div>
+
 	<!-- ======================== SKIP LINK ======================== -->
 	<a href="#main" class="skip-link">Skip to main content</a>
 
@@ -202,20 +209,13 @@
 				<div class="about__grid">
 					<div class="about__text animate-on-scroll slide-up">
 						<p>
-							I'm <strong>Yahya Boukhmira</strong>, a software developer and student at
-							<strong>1337 Coding School</strong> (42 Network). I thrive on solving complex
-							problems through clean, efficient code.
+							<strong>Software Developer | 1337 Student | Content Creator</strong>
 						</p>
 						<p>
-							My journey has taken me deep into <strong>systems programming</strong> with C,
-							creative projects with <strong>Python & Pygame</strong>, and algorithmic
-							challenges on <strong>LeetCode</strong>. I believe in learning by building —
-							every project is an opportunity to push my limits.
+							I’m <strong>Yahya Boukhmira</strong>, a developer and student at <strong>1337</strong> (<strong>42 Network</strong>). I’m a firm believer in learning by building, the kind of learning that happens when you're deep in a <strong>terminal</strong>, breaking things until they finally work.
 						</p>
 						<p>
-							When I'm not coding, you'll find me exploring new technologies, contributing to
-							open-source projects, and continuously expanding my skill set. I'm always open to
-							collaboration and exciting new challenges.
+							Outside of coding, I run <strong>YahCodes</strong>, where I share what I’m learning and try to make tech a bit easier to approach.
 						</p>
 					</div>
 					<div class="about__stats animate-on-scroll slide-up" style="--delay: 0.15s">
@@ -252,82 +252,17 @@
 				<h2 class="section__title animate-on-scroll fade-in">
 					<span class="section__number">02.</span> Skills & Tools
 				</h2>
-				<div class="skills__grid">
-					<!-- Languages -->
-					<div class="skill-category animate-on-scroll slide-up">
-						<h3 class="skill-category__title">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<polyline points="16 18 22 12 16 6"></polyline>
-								<polyline points="8 6 2 12 8 18"></polyline>
-							</svg>
-							Languages
-						</h3>
-						<div class="skill-category__tags">
-							<span class="skill-tag">C</span>
-							<span class="skill-tag">C++</span>
-							<span class="skill-tag">Python</span>
-							<span class="skill-tag">Shell / Bash</span>
-							<span class="skill-tag">JavaScript</span>
-							<span class="skill-tag">HTML / CSS</span>
-						</div>
-					</div>
-					<!-- Systems & Low-Level -->
-					<div class="skill-category animate-on-scroll slide-up" style="--delay: 0.1s">
-						<h3 class="skill-category__title">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-								<line x1="8" y1="21" x2="16" y2="21"></line>
-								<line x1="12" y1="17" x2="12" y2="21"></line>
-							</svg>
-							Systems & Low-Level
-						</h3>
-						<div class="skill-category__tags">
-							<span class="skill-tag">Memory Management</span>
-							<span class="skill-tag">Unix/Linux</span>
-							<span class="skill-tag">Makefile</span>
-							<span class="skill-tag">Data Structures</span>
-							<span class="skill-tag">Algorithms</span>
-							<span class="skill-tag">Sorting Algorithms</span>
-						</div>
-					</div>
-					<!-- Tools & Platforms -->
-					<div class="skill-category animate-on-scroll slide-up" style="--delay: 0.2s">
-						<h3 class="skill-category__title">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path
-									d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
-								</path>
-							</svg>
-							Tools & Platforms
-						</h3>
-						<div class="skill-category__tags">
-							<span class="skill-tag">Git & GitHub</span>
-							<span class="skill-tag">VS Code</span>
-							<span class="skill-tag">Vim / Neovim</span>
-							<span class="skill-tag">Docker</span>
-							<span class="skill-tag">VirtualBox</span>
-							<span class="skill-tag">Pygame</span>
-						</div>
-					</div>
-					<!-- Concepts -->
-					<div class="skill-category animate-on-scroll slide-up" style="--delay: 0.3s">
-						<h3 class="skill-category__title">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-								<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-							</svg>
-							Concepts
-						</h3>
-						<div class="skill-category__tags">
-							<span class="skill-tag">OOP</span>
-							<span class="skill-tag">Problem Solving</span>
-							<span class="skill-tag">System Administration</span>
-							<span class="skill-tag">Game Development</span>
-							<span class="skill-tag">File I/O</span>
-							<span class="skill-tag">Peer Learning</span>
-						</div>
-					</div>
-				</div>
+				<div class="skills-list">
+				<div class="skill-row"><span class="skill-name">C programming (low-level)</span><span class="skill-level skill-level--strong">Strong</span></div>
+				<div class="skill-row"><span class="skill-name">Memory management (manual)</span><span class="skill-level skill-level--strong">Strong</span></div>
+				<div class="skill-row"><span class="skill-name">Algorithms &amp; data structures</span><span class="skill-level skill-level--strong">Strong</span></div>
+				<div class="skill-row"><span class="skill-name">Python (OOP, scripting, game dev)</span><span class="skill-level skill-level--solid">Solid</span></div>
+				<div class="skill-row"><span class="skill-name">Linux server administration</span><span class="skill-level skill-level--intro">Introduced</span></div>
+				<div class="skill-row"><span class="skill-name">Graph algorithms (DFS, BFS, Prim's)</span><span class="skill-level skill-level--solid">Solid</span></div>
+				<div class="skill-row"><span class="skill-name">Makefile &amp; build systems</span><span class="skill-level skill-level--solid">Solid</span></div>
+				<div class="skill-row"><span class="skill-name">Git &amp; version control</span><span class="skill-level skill-level--ongoing">Ongoing</span></div>
+				<div class="skill-row"><span class="skill-name">Game development (C + Python)</span><span class="skill-level skill-level--practical">Practical experience</span></div>
+			</div>
 			</div>
 		</section>
 
@@ -338,30 +273,140 @@
 					<span class="section__number">03.</span> Projects
 				</h2>
 				<p class="section__subtitle animate-on-scroll fade-in">
-					Live from my GitHub — built with curiosity and caffeine.
+					Software Engineering — building from the ground up.
 				</p>
 
-				<!-- Project cards loaded dynamically via JS -->
 				<div class="projects__grid" id="projects-grid">
-					<!-- Loading skeleton -->
-					<div class="project-skeleton" aria-hidden="true">
-						<div class="skeleton-line skeleton-line--title"></div>
-						<div class="skeleton-line skeleton-line--text"></div>
-						<div class="skeleton-line skeleton-line--text skeleton-line--short"></div>
-						<div class="skeleton-line skeleton-line--tags"></div>
+
+					<!-- DOMAIN 1: Systems Programming -->
+					<div class="project-card animate-on-scroll slide-up" style="grid-column: 1 / -1;">
+						<div class="project-card__domain-header">
+							<span class="project-card__domain-label">1. Systems Programming (C Language)</span>
+							<p class="project-card__domain-desc">Writing code that directly manages memory, files, and I/O.</p>
+						</div>
+						<div class="project-card__table-wrapper">
+							<table class="project-card__table">
+								<thead>
+									<tr>
+										<th>Project</th>
+										<th>What it is</th>
+										<th>Concept learned</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><a href="https://github.com/Tweakkin/libft_1337" target="_blank" rel="noopener noreferrer" class="project-link">libft</a></td>
+										<td>Rebuilt the C standard library from zero</td>
+										<td>Manual memory management</td>
+									</tr>
+									<tr>
+										<td><a href="https://github.com/Tweakkin/ft_printf_1337" target="_blank" rel="noopener noreferrer" class="project-link">ft_printf</a></td>
+										<td>Cloned the <code>printf</code> function</td>
+										<td>How variadic functions and I/O formatting work internally</td>
+									</tr>
+									<tr>
+										<td><a href="https://github.com/Tweakkin/get_next_line_1337" target="_blank" rel="noopener noreferrer" class="project-link">get_next_line</a></td>
+										<td>Reads a file line by line using a single buffer</td>
+										<td>File I/O and buffer state management</td>
+									</tr>
+									<tr>
+										<td><a href="https://github.com/Tweakkin/So_Long_1337" target="_blank" rel="noopener noreferrer" class="project-link">So_Long</a></td>
+										<td>2D game built without a game engine (C + MiniLibX)</td>
+										<td>Event-driven programming and real-time rendering</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
-					<div class="project-skeleton" aria-hidden="true">
-						<div class="skeleton-line skeleton-line--title"></div>
-						<div class="skeleton-line skeleton-line--text"></div>
-						<div class="skeleton-line skeleton-line--text skeleton-line--short"></div>
-						<div class="skeleton-line skeleton-line--tags"></div>
+
+					<!-- DOMAIN 2: Algorithms & Data Structures -->
+					<div class="project-card animate-on-scroll slide-up" style="grid-column: 1 / -1; --delay: 0.1s;">
+						<div class="project-card__domain-header">
+							<span class="project-card__domain-label">2. Algorithms &amp; Data Structures</span>
+							<p class="project-card__domain-desc">How to solve complex problems efficiently.</p>
+						</div>
+						<div class="project-card__table-wrapper">
+							<table class="project-card__table">
+								<thead>
+									<tr>
+										<th>Project</th>
+										<th>What it is</th>
+										<th>Concept learned</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><a href="https://github.com/Tweakkin/push_swap_1337" target="_blank" rel="noopener noreferrer" class="project-link">push_swap</a></td>
+										<td>Sort integers using 2 stacks with minimum moves</td>
+										<td>Algorithm optimization and complexity analysis</td>
+									</tr>
+									<tr>
+										<td><a href="https://github.com/Tweakkin/A_Maze_Ing" target="_blank" rel="noopener noreferrer" class="project-link">A-Maze-Ing</a></td>
+										<td>Maze generator + solver with terminal animation (Python)</td>
+										<td>Graph traversal algorithms (DFS, BFS, Prim's)</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
-					<div class="project-skeleton" aria-hidden="true">
-						<div class="skeleton-line skeleton-line--title"></div>
-						<div class="skeleton-line skeleton-line--text"></div>
-						<div class="skeleton-line skeleton-line--text skeleton-line--short"></div>
-						<div class="skeleton-line skeleton-line--tags"></div>
+
+					<!-- DOMAIN 3: Linux & System Administration -->
+					<div class="project-card animate-on-scroll slide-up" style="grid-column: 1 / -1; --delay: 0.2s;">
+						<div class="project-card__domain-header">
+							<span class="project-card__domain-label">3. Linux &amp; System Administration</span>
+							<p class="project-card__domain-desc">Understanding the operating system, not just using it. Configuring a server, securing it, managing users, disks, and the network.</p>
+						</div>
+						<div class="project-card__table-wrapper">
+							<table class="project-card__table">
+								<thead>
+									<tr>
+										<th>Project</th>
+										<th>What it is</th>
+										<th>Concept learned</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><a href="https://github.com/Tweakkin/Born2beroot" target="_blank" rel="noopener noreferrer" class="project-link">Born2beroot</a></td>
+										<td>Configured a full Debian Linux server from scratch in a VM with no GUI</td>
+										<td>How to secure and administrate a Linux server (users, network, disk, access control)</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
+
+					<!-- DOMAIN 4: Python — High-Level Programming -->
+					<div class="project-card animate-on-scroll slide-up" style="grid-column: 1 / -1; --delay: 0.3s;">
+						<div class="project-card__domain-header">
+							<span class="project-card__domain-label">4. Python — High-Level Programming</span>
+							<p class="project-card__domain-desc">Applying algorithmic thinking at a higher abstraction level.</p>
+						</div>
+						<div class="project-card__table-wrapper">
+							<table class="project-card__table">
+								<thead>
+									<tr>
+										<th>Project</th>
+										<th>What it is</th>
+										<th>Concept learned</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><a href="https://github.com/Tweakkin/Python_42_modules" target="_blank" rel="noopener noreferrer" class="project-link">Python 42 modules</a></td>
+										<td>42's official Python curriculum</td>
+										<td>Object-Oriented Programming and data validation</td>
+									</tr>
+									<tr>
+										<td><a href="https://github.com/Tweakkin/A_Maze_Ing" target="_blank" rel="noopener noreferrer" class="project-link">A-Maze-Ing</a></td>
+										<td>Team project — maze generator/solver CLI tool</td>
+										<td>Applying graph algorithms in Python + working in a team</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
 				</div>
 
 				<div class="projects__cta animate-on-scroll fade-in">

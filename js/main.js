@@ -871,7 +871,7 @@
 			initStatCounters();
 		});
 
-		loadGitHubProjects();
+		// loadGitHubProjects(); // Projects section is now static
 		loadCurrentActivity();
 		loadBlogPosts();
 		loadLastUpdated();

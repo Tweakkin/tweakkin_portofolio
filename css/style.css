@@ -2346,6 +2346,7 @@ ul {
 	border-radius: var(--border-radius);
 	padding: 28px 32px;
 	transition: all var(--transition-base);
+	min-width: 0;
 }
 
 .project-card:hover {
@@ -2623,4 +2624,10 @@ ul {
 .skill-level--intro   { background: rgba(251,191,36,0.12);    color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
 .skill-level--ongoing { background: rgba(96,165,250,0.12);    color: #60a5fa; border: 1px solid rgba(96,165,250,0.25); }
 .skill-level--practical { background: rgba(244,114,182,0.12); color: #f472b6; border: 1px solid rgba(244,114,182,0.25); }
+
+@media (max-width: 640px) {
+	.skills-list {
+		grid-template-columns: 1fr;
+	}
+}
 

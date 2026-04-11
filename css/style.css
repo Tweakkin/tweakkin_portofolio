@@ -2378,10 +2378,10 @@ ul {
 }
 
 .project-card__table-wrapper {
-	overflow-x: auto;
 	border: 1px solid var(--border);
 	border-radius: 8px;
-	overflow: hidden;
+	overflow-x: auto;
+	overflow-y: hidden;
 }
 
 .project-card__table {

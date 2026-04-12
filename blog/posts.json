@@ -14,5 +14,13 @@
     "excerpt": "Decoding my pydantic notes, To help you understand how pydantic works",
     "tags": ["Python", "Pydantic", "Data Validation"],
     "externalUrl": "https://medium.com/@yahyaboukhmira7/a-simple-guide-to-python-data-validation-decoding-my-pydantic-notes-b6b8e56d053b"
+  },
+  {
+    "slug": "my-workspace",
+    "title": "Study Journal",
+    "date": "2026-04-12",
+    "excerpt": "This isn't a blog, it's way better, my study journal",
+    "tags": ["workspace", "journaling"],
+    "externalUrl": "https://miro.com/app/board/uXjVJrQTs2Y=/?share_link_id=170040405977"
   }
 ]

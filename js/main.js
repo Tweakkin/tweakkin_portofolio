@@ -557,13 +557,24 @@
 			// Show loading state
 			setFormLoading(true);
 
-			// If Formspree is configured, submit via AJAX
-			if (action && !action.includes('yourformid')) {
+			// Submitting via Web3Forms/Formspree AJAX API
+			if (action && action.startsWith('http')) {
 				try {
+					var accessKeyEl = $('#access_key');
+					var botcheckEl = $('#botcheck');
+					var payload = { name: nameVal, email: emailVal, message: messageVal };
+					
+					if (accessKeyEl) {
+						payload.access_key = accessKeyEl.value; // Required for Web3Forms
+					}
+					if (botcheckEl && botcheckEl.checked) {
+						payload.botcheck = true; // Web3Forms will silently drop the email if this is true
+					}
+
 					var response = await fetch(action, {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-						body: JSON.stringify({ name: nameVal, email: emailVal, message: messageVal })
+						body: JSON.stringify(payload)
 					});
 
 					if (response.ok) {
@@ -571,10 +582,11 @@
 						contactForm.reset();
 						clearFormErrors();
 					} else {
-						throw new Error('Formspree error');
+						var errData = await response.json().catch(function() { return {}; });
+						throw new Error(errData.message || 'API Error');
 					}
 				} catch (error) {
-					console.error('Formspree submission failed, falling back to mailto:', error);
+					console.error('API submission failed, falling back to mailto:', error);
 					showToast('Form service unavailable. Opening email client instead...', 'info');
 					mailtoFallback(nameVal, emailVal, messageVal);
 				}

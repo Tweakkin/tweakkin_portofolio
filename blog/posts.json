@@ -6,5 +6,21 @@
     "excerpt": "A deep dive into Python exceptions — understanding how to handle errors effectively in your Python programs.",
     "tags": ["Python", "Exceptions", "Error Handling"],
     "externalUrl": "https://medium.com/@yahyaboukhmira7/python-exceptions-63edf8439973"
+  },
+  {
+    "slug": "Python-Data-Validation",
+    "title": "A Simple Guide to Python Data Validation",
+    "date": "2026-04-11",
+    "excerpt": "Decoding my pydantic notes, To help you understand how pydantic works",
+    "tags": ["Python", "Pydantic", "Data Validation"],
+    "externalUrl": "https://medium.com/@yahyaboukhmira7/a-simple-guide-to-python-data-validation-decoding-my-pydantic-notes-b6b8e56d053b"
+  },
+  {
+    "slug": "my-workspace",
+    "title": "Study Journal",
+    "date": "2026-04-12",
+    "excerpt": "This isn't a blog, it's way better, my study journal",
+    "tags": ["workspace", "journaling"],
+    "externalUrl": "https://miro.com/app/board/uXjVJrQTs2Y=/?share_link_id=170040405977"
   }
 ]

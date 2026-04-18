@@ -76,10 +76,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Adjusted particle density to find the perfect sweet spot
-    for(let i = 0; i < 220; i++) {
-        particles.push(new Particle());
+    // Adjusted particle density to respond to screen size
+    function initParticles() {
+        particles = [];
+        // Determine a reasonable amount of particles for mobile vs desktop
+        const area = width * height;
+        // Desktop is around 1920x1080 ~ 2M pixels -> ~200 particles
+        // Mobile is around 390x844 ~ 330k pixels -> ~35 particles
+        let count = Math.max(40, Math.floor(area / 10000));
+        if (count > 220) count = 220; // Cap at 220
+
+        for(let i = 0; i < count; i++) {
+            particles.push(new Particle());
+        }
     }
+    initParticles();
+    
+    // Re-initialize particles on major resize to prevent stacking
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            initCanvas();
+            initParticles();
+        }, 200);
+    });
 
     let mouse = { x: null, y: null };
     
@@ -94,6 +115,26 @@ document.addEventListener('DOMContentLoaded', () => {
         mouse.y = null;
     });
 
+    // Mobile Touch Events for interactivity
+    window.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
     // Make the background scroll when the user scrolls (Parallax effect)
     let lastScrollY = window.scrollY || document.documentElement.scrollTop;
     window.addEventListener('scroll', () => {
@@ -101,11 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let deltaY = currentScrollY - lastScrollY;
         lastScrollY = currentScrollY;
         
+        // Disable parallax effect on mobile screens to prevent terrible scrolling experience
+        if (window.innerWidth <= 768) return;
+
         // Shift all particles to create parallax depth
         for(let i = 0; i < particles.length; i++) {
             particles[i].y -= deltaY * 0.6; // 0.6 speed ratio
         }
-    });
+    }, { passive: true });
 
     function animate() {
         ctx.clearRect(0, 0, width, height);

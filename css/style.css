@@ -2188,6 +2188,27 @@ ul {
 
 	.hero__visual {
 		order: -1;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.hero__spline-wrapper {
+		width: 100%;
+		max-width: 350px;
+		height: 400px;
+		margin: 0 auto;
+	}
+
+	.hero__spline-wrapper spline-viewer {
+		width: 750px;
+		height: 750px;
+		transform: translate(calc(-50% + 180px), calc(-50% - 120px));
+	}
+
+	.hero__spline-wrapper::after {
+		width: 280px;
+		height: 40px;
+		transform: translateX(calc(-50% + 30px));
 	}
 
 	.hero__avatar-wrapper {
@@ -2247,7 +2268,25 @@ ul {
 	}
 
 	.hero {
-		min-height: calc(100vh - 40px);
+		min-height: auto;
+		padding-bottom: 40px;
+	}
+
+	.hero__spline-wrapper {
+		max-width: 300px;
+		height: 350px;
+	}
+
+	.hero__spline-wrapper spline-viewer {
+		width: 650px;
+		height: 650px;
+		transform: translate(calc(-50% + 150px), calc(-50% - 100px));
+	}
+
+	.hero__spline-wrapper::after {
+		width: 240px;
+		height: 35px;
+		transform: translateX(calc(-50% + 20px));
 	}
 
 	.hero__name {

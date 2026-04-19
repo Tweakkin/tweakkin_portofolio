@@ -625,37 +625,43 @@ ul {
 /* Avatar */
 .hero__visual {
 	display: flex;
-	justify-content: center;
-}
-
-.hero__avatar-wrapper {
+	justify-content: flex-end; /* Cleanly pushes layout to right column */
 	position: relative;
-	width: 280px;
-	height: 280px;
+	z-index: 1; /* Keep it above background but overlapping text appropriately */
 }
 
-.hero__avatar {
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
-	object-fit: cover;
-	border: 3px solid var(--border);
-	transition: border-color var(--transition-base);
+.hero__spline-wrapper {
+	/* The logical structural bounds inside the layout grid */
+	position: relative;
+	width: 400px; /* Sensible footprint for the grid constraint */
+	height: 480px; /* Logical height roughly matching the text block */
 }
 
-.hero__avatar-ring {
+/* We decouple the physical canvas from the structural grid to prevent clipping */
+.hero__spline-wrapper spline-viewer {
 	position: absolute;
-	inset: -8px;
-	border-radius: 50%;
-	border: 2px dashed var(--accent);
-	opacity: 0.3;
-	animation: spin-slow 30s linear infinite;
+	top: 50%;
+	left: 50%;
+	transform: translate(calc(-50% + 300px), calc(-50% - 180px)); 
+	width: 950px;
+	height: 950px; 
+	max-width: none;
 }
 
-@keyframes spin-slow {
-	to {
-		transform: rotate(360deg);
-	}
+/* Circular lighting floor beneath the robot */
+.hero__spline-wrapper::after {
+	content: '';
+	position: absolute;
+	bottom: -7px;
+	left: 50%;
+	transform: translateX(calc(-50% + 50px));
+	width: 350px;
+	height: 50px;
+	background: radial-gradient(ellipse at center, rgba(108, 99, 255, 0.75) 0%, rgba(108, 99, 255, 0.3) 40%, transparent 70%);
+	border-radius: 50%;
+	filter: blur(10px);
+	pointer-events: none;
+	z-index: 0;
 }
 
 /* Scroll indicator */
@@ -2630,4 +2636,4 @@ ul {
 		grid-template-columns: 1fr;
 	}
 }
-
+

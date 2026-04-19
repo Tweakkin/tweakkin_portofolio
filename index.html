@@ -43,6 +43,9 @@
 
 	<!-- Styles -->
 	<link rel="stylesheet" href="css/style.css" />
+	
+	<!-- Spline Viewer Web Component -->
+	<script type="module" src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"></script>
 </head>
 
 <body>
@@ -181,11 +184,9 @@
 						</a>
 					</div>
 				</div>
-				<div class="hero__visual animate-on-scroll fade-in" style="--delay: 0.3s">
-					<div class="hero__avatar-wrapper">
-						<img src="https://avatars.githubusercontent.com/u/179393259?v=4" alt="Yahya Boukhmira"
-							class="hero__avatar" width="280" height="280" loading="eager" />
-						<div class="hero__avatar-ring"></div>
+				<div class="hero__visual">
+					<div class="hero__spline-wrapper">
+						<spline-viewer url="https://prod.spline.design/TqRN73zD4AfsONOE/scene.splinecode" background="transparent" events-target="global" loading-anim-type="none"></spline-viewer>
 					</div>
 				</div>
 			</div>

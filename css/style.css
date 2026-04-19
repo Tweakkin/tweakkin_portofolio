@@ -2280,13 +2280,14 @@ ul {
 	.hero__spline-wrapper spline-viewer {
 		width: 650px;
 		height: 650px;
-		transform: translate(calc(-50% + 150px), calc(-50% - 100px));
+		transform: translate(calc(-50% + 175px), calc(-50% - 100px));
 	}
 
 	.hero__spline-wrapper::after {
 		width: 240px;
 		height: 35px;
-		transform: translateX(calc(-50% + 20px));
+		bottom: -15px;
+		transform: translateX(calc(-50% + 0px));
 	}
 
 	.hero__name {

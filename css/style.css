@@ -121,6 +121,9 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	transition: background-color var(--transition-base), color var(--transition-base);
 	overflow-x: hidden;
+	zoom: 0.87;
+	-moz-transform: scale(0.87);
+	-moz-transform-origin: 0 0;
 }
 
 /* Scrollbar */

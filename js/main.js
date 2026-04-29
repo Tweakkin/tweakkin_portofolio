@@ -45,6 +45,11 @@
 	const blogModalBody = $('#blog-modal-body');
 	const blogModalClose = $('#blog-modal-close');
 
+	let navSections = [];
+	let navLinks = [];
+	let navScrollQueued = false;
+	let markedLoadPromise = null;
+
 
 	// ========================
 	// 1. TOAST NOTIFICATION SYSTEM
@@ -179,6 +184,11 @@
 	// 4. NAVBAR SCROLL EFFECTS
 	// ========================
 
+	function refreshNavTargets() {
+		navSections = Array.prototype.slice.call($$('section[id]'));
+		navLinks = Array.prototype.slice.call($$('.navbar__link'));
+	}
+
 	function handleNavScroll() {
 		var scrollY = window.scrollY;
 
@@ -188,12 +198,12 @@
 			navbar.classList.remove('scrolled');
 		}
 
-		var sections = $$('section[id]');
-		var navLinks = $$('.navbar__link');
+		if (!navSections.length || !navLinks.length) refreshNavTargets();
+
 		var navHeight = navbar.offsetHeight + 100;
 		var currentSection = '';
 
-		sections.forEach(function (section) {
+		navSections.forEach(function (section) {
 			var sectionTop = section.offsetTop - navHeight;
 			if (scrollY >= sectionTop) {
 				currentSection = section.getAttribute('id');
@@ -208,7 +218,17 @@
 		});
 	}
 
-	window.addEventListener('scroll', handleNavScroll, { passive: true });
+	function scheduleNavScroll() {
+		if (navScrollQueued) return;
+		navScrollQueued = true;
+		requestAnimationFrame(function () {
+			navScrollQueued = false;
+			handleNavScroll();
+		});
+	}
+
+	window.addEventListener('scroll', scheduleNavScroll, { passive: true });
+	window.addEventListener('resize', refreshNavTargets);
 
 
 	// ========================
@@ -747,24 +767,39 @@
 			if (!response.ok) throw new Error('Post not found');
 			var markdown = await response.text();
 
-			// Render markdown using marked.js
-			if (typeof marked !== 'undefined') {
-				marked.setOptions({
-					breaks: true,
-					gfm: true,
-					headerIds: false,
-					mangle: false
-				});
-				blogModalBody.innerHTML = '<div class="blog-modal__article">' + marked.parse(markdown) + '</div>';
-			} else {
-				// Fallback: show raw markdown in pre tag
-				blogModalBody.innerHTML = '<pre class="blog-modal__raw">' + escapeHTML(markdown) + '</pre>';
-			}
+			await loadMarked();
+			marked.setOptions({
+				breaks: true,
+				gfm: true,
+				headerIds: false,
+				mangle: false
+			});
+			blogModalBody.innerHTML = '<div class="blog-modal__article">' + marked.parse(markdown) + '</div>';
 		} catch (error) {
 			console.error('Failed to load blog post:', error);
-			blogModalBody.innerHTML = '<p class="blog-modal__error">Failed to load blog post. Please try again.</p>';
-			showToast('Failed to load blog post.', 'error');
+			if (typeof markdown !== 'undefined') {
+				blogModalBody.innerHTML = '<pre class="blog-modal__raw">' + escapeHTML(markdown) + '</pre>';
+			} else {
+				blogModalBody.innerHTML = '<p class="blog-modal__error">Failed to load blog post. Please try again.</p>';
+				showToast('Failed to load blog post.', 'error');
+			}
 		}
+	}
+
+	function loadMarked() {
+		if (typeof marked !== 'undefined') return Promise.resolve();
+		if (markedLoadPromise) return markedLoadPromise;
+
+		markedLoadPromise = new Promise(function (resolve, reject) {
+			var script = document.createElement('script');
+			script.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+			script.async = true;
+			script.onload = resolve;
+			script.onerror = reject;
+			document.head.appendChild(script);
+		});
+
+		return markedLoadPromise;
 	}
 
 	function closeBlogModal() {
@@ -870,6 +905,7 @@
 
 	function init() {
 		initTheme();
+		refreshNavTargets();
 		initScrollAnimations();
 		initSmoothScroll();
 		initContactForm();

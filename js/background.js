@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
+    let cachedTheme = null;
+    let cachedColors = null;
+    let animationFrameId = null;
+    const LINK_DISTANCE = 130;
+    const LINK_DISTANCE_SQ = LINK_DISTANCE * LINK_DISTANCE;
+    const MOUSE_DISTANCE = 220;
+    const MOUSE_DISTANCE_SQ = MOUSE_DISTANCE * MOUSE_DISTANCE;
 
     // Adapts to window resize seamlessly
     function initCanvas() {
@@ -18,9 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getColors() {
         // Detect current theme to ensure high visibility in both modes
-        const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
+        const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+        if (theme === cachedTheme && cachedColors) return cachedColors;
+
+        cachedTheme = theme;
+        const isLightMode = theme === 'light';
         if (isLightMode) {
-            return {
+            cachedColors = {
                 // PREMIUM LIGHT MODE: Soft, glassy pastel violet instead of harsh dark purple.
                 // It looks much cleaner, more modern, and doesn't clutter the bright UI.
                 particle: (alpha) => `rgba(150, 120, 255, ${alpha * 0.45})`, 
@@ -33,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 mouseGlowColor2: 'rgba(160, 130, 255, 0)'
             };
         } else {
-            return {
+            cachedColors = {
                 particle: (alpha) => `rgba(180, 140, 255, ${alpha * 0.6})`, // Subtler pastel purple for dark state
                 line: (alpha) => `rgba(140, 100, 255, ${alpha * 0.5})`,
                 mouseLine: (alpha) => `rgba(200, 160, 255, ${alpha * 0.6})`,
@@ -41,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 mouseGlowColor2: 'rgba(150, 100, 255, 0)'
             };
         }
+
+        return cachedColors;
     }
 
     class Particle {
@@ -165,14 +178,15 @@ document.addEventListener('DOMContentLoaded', () => {
             for(let j = i + 1; j < particles.length; j++) {
                 let dx = particles[i].x - particles[j].x;
                 let dy = particles[i].y - particles[j].y;
-                let dist = Math.sqrt(dx*dx + dy*dy);
+                let distSq = dx*dx + dy*dy;
 
-                if(dist < 130) {
+                if(distSq < LINK_DISTANCE_SQ) {
+                    let dist = Math.sqrt(distSq);
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
                     // Made opacity higher than before but kept it faded relative to mouse lines
-                    ctx.strokeStyle = colors.line(0.35 * (1 - dist/130));
+                    ctx.strokeStyle = colors.line(0.35 * (1 - dist/LINK_DISTANCE));
                     ctx.stroke();
                 }
             }
@@ -181,14 +195,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mouse.x !== null && mouse.y !== null) {
                 let mdx = particles[i].x - mouse.x;
                 let mdy = particles[i].y - mouse.y;
-                let mdist = Math.sqrt(mdx*mdx + mdy*mdy);
+                let mdistSq = mdx*mdx + mdy*mdy;
 
-                if(mdist < 220) {
+                if(mdistSq < MOUSE_DISTANCE_SQ) {
+                    let mdist = Math.sqrt(mdistSq);
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(mouse.x, mouse.y);
-                    ctx.strokeStyle = colors.mouseLine(0.4 * (1 - mdist/220));
-                    ctx.lineWidth = 1 + (1 - mdist/220) * 1.5;
+                    ctx.strokeStyle = colors.mouseLine(0.4 * (1 - mdist/MOUSE_DISTANCE));
+                    ctx.lineWidth = 1 + (1 - mdist/MOUSE_DISTANCE) * 1.5;
                     ctx.stroke();
                     ctx.lineWidth = 1;
 
@@ -217,7 +232,27 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fill();
         }
 
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
     }
-    animate();
+
+    function startAnimation() {
+        if (animationFrameId !== null) return;
+        animationFrameId = requestAnimationFrame(animate);
+    }
+
+    function stopAnimation() {
+        if (animationFrameId === null) return;
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+    }
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopAnimation();
+        } else {
+            startAnimation();
+        }
+    });
+
+    startAnimation();
 });

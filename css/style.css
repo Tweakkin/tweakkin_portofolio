@@ -641,14 +641,21 @@ ul {
 }
 
 /* We decouple the physical canvas from the structural grid to prevent clipping */
-.hero__spline-wrapper spline-viewer {
+.spline-container {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(calc(-50% + 300px), calc(-50% - 180px)); 
 	width: 950px;
+	height: 890px; /* Hides logo */
+	overflow: hidden;
+}
+
+.spline-container spline-viewer {
+	width: 950px;
 	height: 950px; 
 	max-width: none;
+	display: block;
 }
 
 /* Circular lighting floor beneath the robot */
@@ -2202,10 +2209,15 @@ ul {
 		margin: 0 auto;
 	}
 
-	.hero__spline-wrapper spline-viewer {
+	.spline-container {
+		transform: translate(calc(-50% + 180px), calc(-50% - 120px));
+		width: 750px;
+		height: 690px;
+	}
+
+	.spline-container spline-viewer {
 		width: 750px;
 		height: 750px;
-		transform: translate(calc(-50% + 180px), calc(-50% - 120px));
 	}
 
 	.hero__spline-wrapper::after {
@@ -2280,10 +2292,15 @@ ul {
 		height: 350px;
 	}
 
-	.hero__spline-wrapper spline-viewer {
+	.spline-container {
+		transform: translate(calc(-50% + 175px), calc(-50% - 100px));
+		width: 650px;
+		height: 590px;
+	}
+
+	.spline-container spline-viewer {
 		width: 650px;
 		height: 650px;
-		transform: translate(calc(-50% + 175px), calc(-50% - 100px));
 	}
 
 	.hero__spline-wrapper::after {
